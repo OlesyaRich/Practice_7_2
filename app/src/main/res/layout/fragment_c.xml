@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/fragment_c">
+
+    <TextView
+        android:id="@+id/t_pageName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Header2"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Созданное животное"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/t_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Header3"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:gravity="left"
+        android:text="Вид: "
+        app:layout_constraintTop_toBottomOf="@id/t_pageName"/>
+    <TextView
+        android:id="@+id/t_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Header3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:gravity="left"
+        android:text="Имя: "
+        app:layout_constraintTop_toBottomOf="@id/t_type"/>
+    <TextView
+        android:id="@+id/t_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/Header3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:gravity="left"
+        android:text="Возраст: "
+        app:layout_constraintTop_toBottomOf="@id/t_name"/>
+
+    <Button
+        android:id="@+id/b_addToList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="#D08400"
+        android:gravity="center"
+        android:onClick="b_addToList"
+        android:text="Add cat to list"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/t_age" />
+    <Button
+        android:id="@+id/b_recreateRandom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:backgroundTint="@color/gold"
+        android:textColor="@color/black"
+        android:text="Recreate random"
+        android:onClick="b_recreateRandom"
+        app:layout_constraintTop_toBottomOf="@id/b_addToList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/b_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="100dp"
+        android:backgroundTint="#7B4F00"
+        android:gravity="center"
+        android:onClick="b_recreateRandom"
+        android:text="Return"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/b_recreateRandom" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

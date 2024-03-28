@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/FragmentMain">
+
+    <fragment
+        android:id="@+id/FragmentMain"
+        android:name="com.example.practice_7_2.View_UI.MainFragment"
+        android:label="Blank"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_FragmentMain_to_AFragment"
+            app:destination="@id/AFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AFragment"
+        android:name="com.example.practice_7_2.View_UI.FragmentA"
+        android:label="Blank"
+        tools:layout="@layout/fragment_a">
+        <action
+            android:id="@+id/action_AFragment_to_CFragment"
+            app:destination="@id/CFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CFragment"
+        android:name="com.example.practice_7_2.View_UI.FragmentC"
+        android:label="Blank"
+        tools:layout="@layout/fragment_c">
+        <action
+            android:id="@+id/action_CFragment_to_AFragment"
+            app:destination="@id/AFragment" />
+        <action
+            android:id="@+id/action_CFragment_to_FragmentList"
+            app:destination="@id/FragmentList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FragmentList"
+        android:name="com.example.practice_7_2.View_UI.ListFragment"
+        android:label="Blank"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_FragmentList_to_CFragment"
+            app:destination="@id/CFragment" />
+        <action
+            android:id="@+id/action_FragmentList_to_AFragment"
+            app:destination="@id/AFragment" />
+    </fragment>
+</navigation>
