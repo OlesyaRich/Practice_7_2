@@ -13,7 +13,6 @@ public class AnimalsList {
     public AnimalsList(Map<Integer, Item> animals) {
         this.animals = animals;
     }
-
     public ArrayList<Item> getAnimals() {
         return new ArrayList<Item>(animals.values());
     }
@@ -40,9 +39,9 @@ public class AnimalsList {
 
     public Item getAnimalById(int id) {return animals != null ? animals.get(id) : null;}
 
-    public boolean updateAnimalById(int id, Item good) {
+    public boolean updateAnimalById(int id, Item animal) {
         if (animals == null || animals.get(id) == null) return false;
-        animals.put(id, good);
+        animals.put(id, animal);
         return true;
     }
 

@@ -18,16 +18,16 @@ public class AnimalsListViewModel extends ViewModel {
     }
 
     public void addGoodToOrder(Item item) {
-        AnimalsListRepository order;
-        order = uiState.getValue();
-        if (order != null)
-            order.putAnimal(item);
+        AnimalsListRepository animalList;
+        animalList = uiState.getValue();
+        if (animalList != null)
+            animalList.putAnimal(item);
         else {
             ArrayList<Item> items = new ArrayList<>();
             items.add(item);
-            order = new AnimalsListRepository(items);
+            animalList = new AnimalsListRepository(items);
         }
 
-        uiState.setValue(order);
+        uiState.setValue(animalList);
     }
 }

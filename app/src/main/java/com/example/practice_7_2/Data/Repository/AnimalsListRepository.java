@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 public class AnimalsListRepository {
     AnimalsList animalsList = null;
-
     public AnimalsListRepository(ArrayList<Item> values) {
         if (values != null) {
             this.animalsList = new AnimalsList(new HashMap<Integer, Item>());
@@ -18,23 +17,22 @@ public class AnimalsListRepository {
         }
     }
     public ArrayList<Item> getAnimalsPositions() {
-        if (animalsList != null)
-            return animalsList.getAnimals();
+        if (animalsList != null) return animalsList.getAnimals();
         return null;
     }
     public void setAnimalsPositions(ArrayList<Item> orderedPositions) {
         if (animalsList == null)
             animalsList = new AnimalsList(new HashMap<Integer, Item>());
-        for (Item good : orderedPositions) {
-            animalsList.addAnimalToList(good);
+        for (Item animal : orderedPositions) {
+            animalsList.addAnimalToList(animal);
         }
     }
-    public void putAnimal(Item good) {
+    public void putAnimal(Item animal) {
         if (animalsList != null)
-            animalsList.addAnimalToList(good);
+            animalsList.addAnimalToList(animal);
         else {
             animalsList = new AnimalsList(new HashMap<Integer, Item>());
-            animalsList.addAnimalToList(good);
+            animalsList.addAnimalToList(animal);
         }
     }
     public Item getAnimal(int position) {

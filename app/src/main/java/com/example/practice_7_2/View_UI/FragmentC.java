@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.practice_7_2.Data.Model.Item;
 import com.example.practice_7_2.R;
 import com.example.practice_7_2.ViewModel.AnimalViewModel;
 import com.example.practice_7_2.ViewModel.AnimalsListViewModel;
@@ -31,21 +32,31 @@ public class FragmentC extends Fragment {
         View view = inflater.inflate(R.layout.fragment_c, container, false);
         return view;
     }
-
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView catType = (TextView) getActivity().findViewById(R.id.t_type);
         TextView catName = (TextView) getActivity().findViewById(R.id.t_name);
         TextView catAge = (TextView) getActivity().findViewById(R.id.t_age);
+        Button button_recreate_random = requireView().findViewById(R.id.b_recreateRandom);
+        Button button_return = requireView().findViewById(R.id.b_return);
+        Button button_addToList = requireView().findViewById(R.id.b_addToList);
 
         AnimalViewModel catViewModel = new ViewModelProvider(getActivity()).get(AnimalViewModel.class);
-        catViewModel.getUIState().observe(getViewLifecycleOwner(), uiState -> {
-            catType.setText("Тип: " + uiState.getAnimalType());
-            catName.setText("Имя: " + uiState.getAnimalName());
-            catAge.setText("Возраст: " + uiState.getAnimalAge());
-        });
-
-        Button button_recreate_random = requireView().findViewById(R.id.b_recreateRandom);
+        if (getArguments() == null) {
+            catViewModel.getUIState().observe(getViewLifecycleOwner(), uiState -> {
+                catType.setText("Тип: " + uiState.getAnimalType());
+                catName.setText("Имя: " + uiState.getAnimalName());
+                catAge.setText("Возраст: " + uiState.getAnimalAge());
+            });
+        } else {
+            Item cat = (Item) getArguments().getSerializable("Item");
+            String[] parts = cat.getName().split(" ");
+            catType.setText("Тип: " + parts[0]);
+            catName.setText("Имя: " + parts[1]);
+            catAge.setText("Возраст: " + parts[2]);
+            button_addToList.setVisibility(View.GONE);
+            button_recreate_random.setVisibility(View.GONE);
+        }
         button_recreate_random.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,38 +64,26 @@ public class FragmentC extends Fragment {
             }
         });
 
-        Button button_return = requireView().findViewById(R.id.b_return);
         button_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_CFragment_to_AFragment);
+                if (getArguments() == null)
+                    Navigation.findNavController(view).navigate(R.id.action_CFragment_to_AFragment);
+                else {
+                    Navigation.findNavController(view).navigate(R.id.action_CFragment_to_FragmentList);
+                }
             }
         });
 
-//        AnimalViewModel animalViewModel = new ViewModelProvider(getActivity()).get(AnimalViewModel.class);
         AnimalsListViewModel animalsListViewModel = new ViewModelProvider(getActivity()).get(AnimalsListViewModel.class);
-        Button button_addToList = requireView().findViewById(R.id.b_addToList);
         button_addToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animalsListViewModel.addGoodToOrder(Objects.requireNonNull(catViewModel.getUIState().getValue()).getAnimal());
+                animalsListViewModel.addGoodToOrder(catViewModel.getUIState().getValue().getAnimal());
                 catViewModel.inputAnimalParameters(null, null, null);
 
                 Navigation.findNavController(view).navigate(R.id.action_CFragment_to_FragmentList);
             }
         });
-
-        //animal = (AnimalUIState) getArguments().getSerializable("Animal");
-
-        /*TextView catName = requireView().findViewById(R.id.t_name);
-        String cat_Name = "Имя: " + animal.getAnimalName();
-        catName.setText(cat_Name);
-
-        TextView catType = requireView().findViewById(R.id.t_type);
-        String cat_Type = "Тип: " + animal.getAnimalType();
-        catType.setText(cat_Type);
-
-        TextView catAge = requireView().findViewById(R.id.t_age);
-        catAge.setText("Возраст: " + animal.getAnimalAge() + " лет");*/
     }
 }

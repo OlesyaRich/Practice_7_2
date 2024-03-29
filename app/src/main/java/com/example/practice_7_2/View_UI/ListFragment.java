@@ -33,7 +33,6 @@ public class ListFragment extends Fragment {
         public interface OnItemClicked {
             void onItemClick(int position);
         }
-
         public YourCustomRecyclerViewAdapter(List<Item> dataList) {
             this.dataList = dataList;
         }
@@ -46,13 +45,11 @@ public class ListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Item item = dataList.get(position);
-            holder.imageView.setImageResource(item.getImageResId());
             holder.textView.setText(item.getName());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClick.onItemClick(holder.getAdapterPosition());
-//                    Navigation.findNavController(v).navigate(R.id.action_FragmentList_to_CFragment);
                 }
             });
         }
@@ -65,7 +62,6 @@ public class ListFragment extends Fragment {
             TextView textView;
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                imageView = itemView.findViewById(R.id.imageView);
                 textView = itemView.findViewById(R.id.textView);
             }
         }
@@ -73,34 +69,17 @@ public class ListFragment extends Fragment {
             this.onClick=onClick;
         }
     }
-
     public ListFragment() {
         super(R.layout.fragment_list);
     }
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    /*public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        List<Item> dataList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            dataList.add(new Item("Dog " + i, R.drawable.cat));
-        }
-
-        YourCustomRecyclerViewAdapter adapter = new YourCustomRecyclerViewAdapter();
-        recyclerView.setAdapter(adapter);
-        return view;
-    }*/
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(view);
         Button addNewCat_button = (Button) getActivity().findViewById(R.id.b_addNewCat);
         RecyclerView itemsList = getActivity().findViewById(R.id.recycler_view);
-
         AnimalsListViewModel animalsViewModel = new ViewModelProvider(getActivity()).get(AnimalsListViewModel.class);
 
         animalsViewModel.getUIState().observe(getViewLifecycleOwner(), uiState -> {
@@ -114,10 +93,6 @@ public class ListFragment extends Fragment {
                     itemsList.setVisibility(View.VISIBLE);
 
                 YourCustomRecyclerViewAdapter adapter = new YourCustomRecyclerViewAdapter(items);
-
-                //убрала конекст!!!!!!
-
-
                 LinearLayoutManager layoutManager = new
                         LinearLayoutManager(this.getContext().getApplicationContext());
                 itemsList.setLayoutManager(layoutManager);
@@ -133,7 +108,6 @@ public class ListFragment extends Fragment {
                         }
                     }
                 });
-
                 itemsList.setAdapter(adapter);
             }
         });

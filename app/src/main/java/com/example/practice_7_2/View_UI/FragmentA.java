@@ -18,11 +18,9 @@ import com.example.practice_7_2.ViewModel.AnimalViewModel;
 import com.example.practice_7_2.R;
 
 public class FragmentA extends Fragment {
-
     public FragmentA() {
         super(R.layout.fragment_a);
     }
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

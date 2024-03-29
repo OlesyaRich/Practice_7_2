@@ -12,19 +12,24 @@ public class AnimalRepository {
     public AnimalRepository() {}
     public AnimalRepository(String AnimalName) {
         this.AnimalName = AnimalName;
+        currentAnimal = new CurrentAnimal(new Item(AnimalName, 0));
     }
     public AnimalRepository(String AnimalType, String AnimalName) {
         this.AnimalType = AnimalType;
         this.AnimalName = AnimalName;
+        currentAnimal = new CurrentAnimal(new Item(AnimalName, 0));
     }
     public AnimalRepository(String AnimalType, String AnimalName, String AnimalAge) {
         this.AnimalType = AnimalType;
         this.AnimalName = AnimalName;
         this.AnimalAge = AnimalAge;
+        currentAnimal = new CurrentAnimal(new Item(AnimalType + " " + AnimalName +
+                " " + AnimalAge + " лет", 0));
     }
 
     public void setAnimalName(String animalName) {
         this.AnimalName = animalName;
+        currentAnimal.SetCurrentAnimal(new Item(animalName, 0));
     }
     public void setAnimalType(String animalType) {
         this.AnimalType = animalType;

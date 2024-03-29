@@ -23,7 +23,6 @@
             android:id="@+id/action_AFragment_to_CFragment"
             app:destination="@id/CFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/CFragment"
         android:name="com.example.practice_7_2.View_UI.FragmentC"
@@ -36,7 +35,6 @@
             android:id="@+id/action_CFragment_to_FragmentList"
             app:destination="@id/FragmentList" />
     </fragment>
-
     <fragment
         android:id="@+id/FragmentList"
         android:name="com.example.practice_7_2.View_UI.ListFragment"

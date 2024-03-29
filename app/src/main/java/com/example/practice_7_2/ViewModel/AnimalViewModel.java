@@ -28,8 +28,8 @@ public class AnimalViewModel extends ViewModel {
         Random random = new Random();
         uiState.setValue(
                 new AnimalRepository(
-                        catNames[random.nextInt(6)],
                         catTypes[random.nextInt(8)],
+                        catNames[random.nextInt(6)],
                         String.valueOf(random.nextInt(20))
                 )
         );
